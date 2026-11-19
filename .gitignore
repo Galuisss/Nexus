@@ -1,0 +1,11 @@
+AGENTS.md
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+.nexus/
+.nexus-demo/
+*.egg-info/
+dist/
+build/

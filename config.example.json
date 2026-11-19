@@ -1,0 +1,21 @@
+{
+  "machines": [
+    {
+      "name": "local",
+      "transport": "local",
+      "connection": "daemon",
+      "codexBin": "codex",
+      "projects": []
+    },
+    {
+      "name": "devbox",
+      "transport": "ssh",
+      "host": "devbox",
+      "user": "developer",
+      "port": 22,
+      "connection": "daemon",
+      "codexBin": "/home/developer/.local/bin/codex",
+      "projects": []
+    }
+  ]
+}

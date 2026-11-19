@@ -1,0 +1,311 @@
+{
+  "machines": [
+    {
+      "id": "demo-devbox",
+      "name": "devbox",
+      "transport": "ssh",
+      "host": "devbox",
+      "user": "vector",
+      "port": 22,
+      "codexBin": "codex",
+      "connection": "daemon",
+      "projects": [
+        "/home/vector/nexus"
+      ],
+      "demo": true
+    },
+    {
+      "id": "demo-mac",
+      "name": "MacBook Pro",
+      "transport": "ssh",
+      "host": "macbook-pro",
+      "user": "vector",
+      "port": 22,
+      "codexBin": "codex",
+      "connection": "daemon",
+      "projects": [
+        "/Users/vector/projects/research"
+      ],
+      "demo": true
+    }
+  ],
+  "tokenUsage": {
+    "last": {
+      "totalTokens": 12980,
+      "inputTokens": 12340,
+      "outputTokens": 640,
+      "cachedInputTokens": 8200,
+      "reasoningOutputTokens": 320,
+      "cacheWriteInputTokens": 0
+    },
+    "total": {
+      "totalTokens": 23400,
+      "inputTokens": 21800,
+      "outputTokens": 1600,
+      "cachedInputTokens": 15300,
+      "reasoningOutputTokens": 900,
+      "cacheWriteInputTokens": 0
+    },
+    "modelContextWindow": 258400
+  },
+  "threads": [
+    {
+      "key": "main",
+      "machineId": "demo-devbox",
+      "name": "实现跨机器的会话管理",
+      "cwd": "/home/vector/nexus",
+      "age": 0,
+      "turns": [
+        {
+          "status": "completed",
+          "items": [
+            {
+              "type": "userMessage",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "先梳理远程会话的执行与交互方式。"
+                }
+              ]
+            },
+            {
+              "type": "agentMessage",
+              "text": "会话交给各机器上的 Codex daemon 执行，Nexus 统一展示对话和执行状态。人类、agent 与自动化工具使用同一套接口。",
+              "phase": "final_answer"
+            }
+          ],
+          "durationMs": 9000,
+          "error": null,
+          "key": "turn-1",
+          "age": 400
+        },
+        {
+          "status": "completed",
+          "items": [
+            {
+              "type": "userMessage",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "把会话的基础操作做通，包括历史分叉和选择性停止后台任务。"
+                }
+              ]
+            },
+            {
+              "id": "demo-command",
+              "type": "commandExecution",
+              "command": "python -m nexus serve",
+              "cwd": "/home/vector/nexus",
+              "status": "completed",
+              "exitCode": 0,
+              "aggregatedOutput": "INFO  Nexus is running at http://127.0.0.1:8765\n"
+            },
+            {
+              "type": "agentMessage",
+              "text": "基础操作已连接：\n\n- 发送消息时沿用 Codex 的原生 steering。\n- 可以从已完成的历史轮次创建分支。\n- 后台任务可以单独停止，也可以全部停止。\n\n你可以在这里继续对话，体验流式回复与中断。",
+              "phase": "final_answer"
+            }
+          ],
+          "durationMs": 9000,
+          "error": null,
+          "key": "turn-2",
+          "age": 60
+        }
+      ],
+      "terminals": [
+        {
+          "processId": "101",
+          "itemId": "demo-terminal-1",
+          "command": "python -m nexus serve"
+        },
+        {
+          "processId": "102",
+          "itemId": "demo-terminal-2",
+          "command": "python scripts/watch.py"
+        }
+      ]
+    },
+    {
+      "key": "checks",
+      "machineId": "demo-devbox",
+      "name": "检查 SDK 的事件处理",
+      "cwd": "/home/vector/nexus",
+      "age": 120,
+      "turns": [
+        {
+          "status": "completed",
+          "items": [
+            {
+              "type": "userMessage",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "检查一下 SDK 的事件处理实现，并运行测试。"
+                }
+              ]
+            },
+            {
+              "type": "agentMessage",
+              "text": "我已检查事件路由，接下来运行测试。",
+              "phase": "final_answer"
+            }
+          ],
+          "durationMs": 9000,
+          "error": null,
+          "key": "turn-1",
+          "age": 180
+        },
+        {
+          "status": "inProgress",
+          "items": [
+            {
+              "type": "userMessage",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "运行测试前请让我确认命令。"
+                }
+              ]
+            },
+            {
+              "id": "demo-approval-item",
+              "type": "commandExecution",
+              "command": "python -m pytest -q",
+              "cwd": "/home/vector/nexus",
+              "status": "inProgress",
+              "aggregatedOutput": ""
+            }
+          ],
+          "error": null,
+          "key": "turn-2",
+          "age": 120
+        }
+      ],
+      "status": {
+        "type": "active",
+        "activeFlags": [
+          "waitingOnApproval"
+        ]
+      }
+    },
+    {
+      "key": "saved",
+      "machineId": "demo-devbox",
+      "name": "梳理机器注册流程",
+      "cwd": "/home/vector/nexus",
+      "age": 86400,
+      "turns": [
+        {
+          "status": "completed",
+          "items": [
+            {
+              "type": "userMessage",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "整理机器的连接配置。"
+                }
+              ]
+            },
+            {
+              "type": "agentMessage",
+              "text": "机器连接使用 SSH 信息，任务目录随会话记录。",
+              "phase": "final_answer"
+            }
+          ],
+          "durationMs": 9000,
+          "error": null,
+          "key": "turn-1",
+          "age": 86400
+        }
+      ],
+      "status": {
+        "type": "notLoaded"
+      }
+    },
+    {
+      "key": "research",
+      "machineId": "demo-mac",
+      "name": "检查实验结果",
+      "cwd": "/Users/vector/projects/research",
+      "age": 30,
+      "turns": [
+        {
+          "status": "completed",
+          "items": [
+            {
+              "type": "userMessage",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "整理一下最近的实验结论。"
+                }
+              ]
+            },
+            {
+              "type": "agentMessage",
+              "text": "实验记录已整理。接下来可以从这个会话继续分析，或创建一个分支验证新的假设。",
+              "phase": "final_answer"
+            }
+          ],
+          "durationMs": 9000,
+          "error": null,
+          "key": "turn-1",
+          "age": 1000
+        },
+        {
+          "status": "completed",
+          "items": [
+            {
+              "type": "userMessage",
+              "content": [
+                {
+                  "type": "text",
+                  "text": "继续分析前，先确认接下来的方向。"
+                }
+              ]
+            },
+            {
+              "type": "agentMessage",
+              "text": "接下来优先分析哪部分？\n- 对比实验结果\n- 检查异常样本",
+              "phase": "final_answer",
+              "delivery": "async",
+              "questions": [
+                {
+                  "title": "接下来优先分析哪部分？",
+                  "options": [
+                    "对比实验结果",
+                    "检查异常样本"
+                  ]
+                }
+              ]
+            }
+          ],
+          "durationMs": 9000,
+          "error": null,
+          "key": "turn-2",
+          "age": 30
+        }
+      ]
+    }
+  ],
+  "requests": [
+    {
+      "id": "demo-approval",
+      "method": "item/commandExecution/requestApproval",
+      "params": {
+        "itemId": "demo-approval-item",
+        "command": "python -m pytest -q",
+        "cwd": "/home/vector/nexus",
+        "reason": "运行项目测试。",
+        "availableDecisions": [
+          "accept",
+          "decline",
+          "cancel"
+        ]
+      },
+      "thread": "checks",
+      "turn": "turn-2"
+    }
+  ]
+}

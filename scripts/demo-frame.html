@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <style>
+    :root {
+      --frame-padding: 32px;
+      --frame-radius: 12px;
+      --frame-background: #eceee9;
+      /* frame-config */
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; width: 100%; height: 100%; }
+    body { padding: var(--frame-padding); background: var(--frame-background); }
+    .window {
+      height: 100%;
+      overflow: hidden;
+      border: 1px solid #ffffffb3;
+      border-radius: var(--frame-radius);
+      background: #fff;
+      box-shadow: 0 22px 56px #2e3a302b, 0 2px 8px #2e3a3014;
+    }
+    .bar {
+      position: relative;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      padding: 0 14px;
+      gap: 7px;
+      border-bottom: 1px solid #e4e5de;
+      background: #f8f9f5;
+    }
+    .dot { width: 9px; height: 9px; border-radius: 50%; background: #d7a49c; }
+    .dot:nth-child(2) { background: #d8c38e; }
+    .dot:nth-child(3) { background: #a4bea5; }
+    .title {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      color: #7c8278;
+      font: 11px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      letter-spacing: .03em;
+    }
+    iframe { display: block; border: 0; width: 100%; height: calc(100% - 34px); }
+  </style>
+</head>
+<body>
+  <main class="window">
+    <header class="bar">
+      <i class="dot"></i><i class="dot"></i><i class="dot"></i>
+      <span class="title">Nexus</span>
+    </header>
+    <iframe src="/" title="Nexus"></iframe>
+  </main>
+</body>
+</html>

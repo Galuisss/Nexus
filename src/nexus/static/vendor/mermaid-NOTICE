@@ -1,0 +1,4 @@
+Mermaid 12.3.0
+https://registry.npmjs.org/mermaid/-/mermaid-12.3.0.tgz
+Source: dist/mermaid.min.js; final global assignment replaced with an ES module default export.
+Bundled dependency notices are included in mermaid.js.
